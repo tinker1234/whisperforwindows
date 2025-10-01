@@ -37,7 +37,7 @@ def main():
         raise Exception("OPENAI_API_KEY environment variable is not set. Please set it in .env file... See .env.example")
         return
     with sr.Microphone(device_index=int(os.getenv("USE_MICROPHONE_INDEX"))) as source:
-        rec.adjust_for_ambient_noise(source, duration=os.getenv("AMBIENT_NOISE_DURATION"))
+        rec.adjust_for_ambient_noise(source, duration=int(os.getenv("AMBIENT_NOISE_DURATION")))
     
         loop(source)
 
@@ -45,4 +45,5 @@ if __name__ == "__main__":
     if os.getenv("LIST_MICROPHONE_ON_START") == "Y":
         print_microphone()
     main()
+
 
